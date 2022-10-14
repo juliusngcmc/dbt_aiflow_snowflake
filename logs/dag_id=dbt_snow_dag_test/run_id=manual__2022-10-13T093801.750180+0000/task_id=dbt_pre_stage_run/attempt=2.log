@@ -1,0 +1,105 @@
+[2022-10-13 09:39:03,693] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [queued]>
+[2022-10-13 09:39:03,700] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [queued]>
+[2022-10-13 09:39:03,700] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13 09:39:03,701] {taskinstance.py:1357} INFO - Starting attempt 2 of 2
+[2022-10-13 09:39:03,701] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13 09:39:03,715] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): dbt_pre_stage_run> on 2022-10-13 09:38:01.750180+00:00
+[2022-10-13 09:39:03,718] {standard_task_runner.py:52} INFO - Started process 330 to run task
+[2022-10-13 09:39:03,721] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dbt_snow_dag_test', 'dbt_pre_stage_run', 'manual__2022-10-13T09:38:01.750180+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/dbt_snow.py', '--cfg-path', '/tmp/tmpaobv5t6l', '--error-file', '/tmp/tmp53im362z']
+[2022-10-13 09:39:03,721] {standard_task_runner.py:80} INFO - Job 6: Subtask dbt_pre_stage_run
+[2022-10-13 09:39:03,764] {task_command.py:369} INFO - Running <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [running]> on host 7a2aacc6344e
+[2022-10-13 09:39:03,836] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=khanhduy9cnct@gmail.com
+AIRFLOW_CTX_DAG_OWNER=julius
+AIRFLOW_CTX_DAG_ID=dbt_snow_dag_test
+AIRFLOW_CTX_TASK_ID=dbt_pre_stage_run
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-13T09:38:01.750180+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-13T09:38:01.750180+00:00
+[2022-10-13 09:39:03,837] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-10-13 09:39:03,838] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'cd /dbt && dbt run --models pre_stage --profiles-dir .']
+[2022-10-13 09:39:03,844] {subprocess.py:85} INFO - Output:
+[2022-10-13 09:39:03,846] {subprocess.py:92} INFO - bash: line 1: dbt: command not found
+[2022-10-13 09:39:03,846] {subprocess.py:96} INFO - Command exited with return code 127
+[2022-10-13 09:39:03,858] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 195, in execute
+    f'Bash command failed. The command returned a non-zero exit code {result.exit_code}.'
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2022-10-13 09:39:03,861] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=dbt_snow_dag_test, task_id=dbt_pre_stage_run, execution_date=20221013T093801, start_date=20221013T093903, end_date=20221013T093903
+[2022-10-13 09:39:03,877] {warnings.py:110} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/email.py:115: PendingDeprecationWarning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+  send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+
+[2022-10-13 09:39:03,877] {configuration.py:494} WARNING - section/key [smtp/smtp_user] not found in config
+[2022-10-13 09:39:03,878] {email.py:224} INFO - Email alerting: attempt 1
+[2022-10-13 09:39:03,883] {configuration.py:494} WARNING - section/key [smtp/smtp_user] not found in config
+[2022-10-13 09:39:03,884] {email.py:224} INFO - Email alerting: attempt 1
+[2022-10-13 09:39:03,884] {taskinstance.py:1944} ERROR - Failed to send email to: ['khanhduy9cnct@gmail.com']
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1451, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1598, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1659, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 195, in execute
+    f'Bash command failed. The command returned a non-zero exit code {result.exit_code}.'
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 2316, in email_alert
+    send_email(task.email, subject, html_content)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 71, in send_email
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 115, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 226, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 260, in _get_smtp_connection
+    else smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 251, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.7/smtplib.py", line 336, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 307, in _get_socket
+    self.source_address)
+  File "/usr/local/lib/python3.7/socket.py", line 728, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/socket.py", line 716, in create_connection
+    sock.connect(sa)
+OSError: [Errno 99] Cannot assign requested address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1942, in handle_failure
+    self.email_alert(error, task)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 2318, in email_alert
+    send_email(task.email, subject, html_content_err)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 71, in send_email
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 115, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 226, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 260, in _get_smtp_connection
+    else smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 251, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.7/smtplib.py", line 336, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 307, in _get_socket
+    self.source_address)
+  File "/usr/local/lib/python3.7/socket.py", line 728, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/socket.py", line 716, in create_connection
+    sock.connect(sa)
+OSError: [Errno 99] Cannot assign requested address
+[2022-10-13 09:39:03,895] {standard_task_runner.py:97} ERROR - Failed to execute job 6 for task dbt_pre_stage_run (Bash command failed. The command returned a non-zero exit code 127.; 330)
+[2022-10-13 09:39:03,934] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-10-13 09:39:03,973] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

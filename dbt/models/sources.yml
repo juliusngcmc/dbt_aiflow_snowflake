@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: trial_landing_db
+    schema: raw
+    tables:
+      - name: appointment
+        identifier: appointment
+      - name: invoice
+        identifier: invoice
+      - name: invoice_items
+        identifier: invoice_items
+      - name: patient
+        identifier: patient
+      - name: branch
+        identifier: branch
+      - name: receipts
+        identifier: receipts
+      - name: receipts_items
+        identifier: receipts_items
+      - name: fivetran_audit
+        identifier: fivetran_audit

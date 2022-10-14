@@ -1,0 +1,35 @@
+[2022-10-13 09:38:03,040] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [queued]>
+[2022-10-13 09:38:03,048] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [queued]>
+[2022-10-13 09:38:03,048] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13 09:38:03,049] {taskinstance.py:1357} INFO - Starting attempt 1 of 2
+[2022-10-13 09:38:03,049] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-13 09:38:03,064] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): dbt_pre_stage_run> on 2022-10-13 09:38:01.750180+00:00
+[2022-10-13 09:38:03,068] {standard_task_runner.py:52} INFO - Started process 273 to run task
+[2022-10-13 09:38:03,070] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dbt_snow_dag_test', 'dbt_pre_stage_run', 'manual__2022-10-13T09:38:01.750180+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/dbt_snow.py', '--cfg-path', '/tmp/tmprle6wu6f', '--error-file', '/tmp/tmpewaqu57w']
+[2022-10-13 09:38:03,071] {standard_task_runner.py:80} INFO - Job 5: Subtask dbt_pre_stage_run
+[2022-10-13 09:38:03,128] {task_command.py:369} INFO - Running <TaskInstance: dbt_snow_dag_test.dbt_pre_stage_run manual__2022-10-13T09:38:01.750180+00:00 [running]> on host 7a2aacc6344e
+[2022-10-13 09:38:03,230] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=khanhduy9cnct@gmail.com
+AIRFLOW_CTX_DAG_OWNER=julius
+AIRFLOW_CTX_DAG_ID=dbt_snow_dag_test
+AIRFLOW_CTX_TASK_ID=dbt_pre_stage_run
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-13T09:38:01.750180+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-13T09:38:01.750180+00:00
+[2022-10-13 09:38:03,232] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-10-13 09:38:03,233] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'cd /dbt && dbt run --models pre_stage --profiles-dir .']
+[2022-10-13 09:38:03,241] {subprocess.py:85} INFO - Output:
+[2022-10-13 09:38:03,245] {subprocess.py:92} INFO - bash: line 1: dbt: command not found
+[2022-10-13 09:38:03,246] {subprocess.py:96} INFO - Command exited with return code 127
+[2022-10-13 09:38:03,259] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 195, in execute
+    f'Bash command failed. The command returned a non-zero exit code {result.exit_code}.'
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2022-10-13 09:38:03,262] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=dbt_snow_dag_test, task_id=dbt_pre_stage_run, execution_date=20221013T093801, start_date=20221013T093803, end_date=20221013T093803
+[2022-10-13 09:38:03,274] {standard_task_runner.py:97} ERROR - Failed to execute job 5 for task dbt_pre_stage_run (Bash command failed. The command returned a non-zero exit code 127.; 273)
+[2022-10-13 09:38:03,284] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-10-13 09:38:03,319] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
